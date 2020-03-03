@@ -1,23 +1,3 @@
-function the_enemy () {
-    mySprite2 = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . 7 . . . . . . . . . . 
-. . . . 7 7 7 . . . . . . . . . 
-. . . . 1 7 1 . . . . . . . . . 
-. . . . 7 7 7 . . . . . . . . . 
-. . . . 2 2 2 . . . . . . . . . 
-. . . . . 7 . . . . . . . . . . 
-. 7 7 7 7 7 7 . . . . . . . . . 
-. . . . 7 7 7 . . . . . . . . . 
-. 7 7 7 7 7 7 . . . . . . . . . 
-. . . . 7 7 7 . . . . . . . . . 
-. . . . 7 . 7 . . . . . . . . . 
-. . . . 7 . 7 . . . . . . . . . 
-. . . . 7 . 7 7 . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Player)
-}
 function the_Player () {
     mySprite = sprites.create(img`
 . . . . . . . . . . . . . . . . 
@@ -40,8 +20,28 @@ function the_Player () {
     controller.moveSprite(mySprite)
     scene.cameraFollowSprite(mySprite)
 }
-let mySprite: Sprite = null
+function the_enemy () {
+    mySprite2 = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . 7 . . . . . . . . . . 
+. . . . 7 7 7 . . . . . . . . . 
+. . . . 1 7 1 . . . . . . . . . 
+. . . . 7 7 7 . . . . . . . . . 
+. . . . 2 2 2 . . . . . . . . . 
+. . . . . 7 . . . . . . . . . . 
+. 7 7 7 7 7 7 . . . . . . . . . 
+. . . . 7 7 7 . . . . . . . . . 
+. 7 7 7 7 7 7 . . . . . . . . . 
+. . . . 7 7 7 . . . . . . . . . 
+. . . . 7 . 7 . . . . . . . . . 
+. . . . 7 . 7 . . . . . . . . . 
+. . . . 7 . 7 7 . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Player)
+}
 let mySprite2: Sprite = null
+let mySprite: Sprite = null
 the_Player()
 scene.setTile(9, img`
 . . b b b b b b b b b b b b . . 
