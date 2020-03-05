@@ -1,48 +1,6 @@
-function nextLevel () {
-    scene.setTileMap(Levels[currentLevel])
-    mySprite.x += 16
-}
-function map () {
-    scene.setTile(14, img`
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 9 9 9 6 6 9 9 9 9 6 6 9 9 9 6 
-6 9 9 6 6 9 9 c c 9 9 6 6 9 9 6 
-6 9 6 6 9 9 c c 6 9 9 9 6 6 9 6 
-6 6 6 9 9 9 9 c 6 6 9 9 9 6 6 6 
-6 6 9 9 9 9 9 9 6 6 9 9 9 9 6 6 
-6 9 9 9 6 6 6 6 9 6 9 9 c 9 9 6 
-6 9 c 6 6 6 9 9 9 6 9 c c c 9 6 
-6 9 c c c 9 6 9 9 9 6 6 6 c 9 6 
-6 9 9 c 9 9 6 9 6 6 6 6 9 9 9 6 
-6 6 9 9 9 9 6 6 9 9 9 9 9 9 6 6 
-6 6 6 9 9 9 6 6 c 9 9 9 9 6 6 6 
-6 9 6 6 9 9 9 6 c c 9 9 6 6 9 6 
-6 9 9 6 6 9 9 c c 9 9 6 6 9 9 6 
-6 9 9 9 6 6 9 9 9 9 6 6 9 9 9 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-`, true)
-    scene.setTile(1, img`
-. . b b b b b b b b b b b b . . 
-. b e 4 4 4 4 4 4 4 4 4 4 e b . 
-b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
-b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
-b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
-b e e 4 4 4 4 4 4 4 4 4 4 e e b 
-b e e e e e e e e e e e e e e b 
-b e e e e e e e e e e e e e e b 
-b b b b b b b d d b b b b b b b 
-c b b b b b b c c b b b b b b c 
-c c c c c c b c c b c c c c c c 
-b e e e e e c b b c e e e e e b 
-b e e e e e e e e e e e e e e b 
-b c e e e e e e e e e e e e c b 
-b b b b b b b b b b b b b b b b 
-. b b . . . . . . . . . . b b . 
-`, true)
-}
 scene.onHitTile(SpriteKind.Player, 14, function (sprite) {
-    currentLevel += 1
     nextLevel()
+    currentLevel += 1
 })
 function the_Player () {
     mySprite = sprites.create(img`
@@ -230,6 +188,48 @@ function the_enemy () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     end_the_game()
 })
+function map () {
+    scene.setTile(14, img`
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 9 9 9 6 6 9 9 9 9 6 6 9 9 9 6 
+6 9 9 6 6 9 9 c c 9 9 6 6 9 9 6 
+6 9 6 6 9 9 c c 6 9 9 9 6 6 9 6 
+6 6 6 9 9 9 9 c 6 6 9 9 9 6 6 6 
+6 6 9 9 9 9 9 9 6 6 9 9 9 9 6 6 
+6 9 9 9 6 6 6 6 9 6 9 9 c 9 9 6 
+6 9 c 6 6 6 9 9 9 6 9 c c c 9 6 
+6 9 c c c 9 6 9 9 9 6 6 6 c 9 6 
+6 9 9 c 9 9 6 9 6 6 6 6 9 9 9 6 
+6 6 9 9 9 9 6 6 9 9 9 9 9 9 6 6 
+6 6 6 9 9 9 6 6 c 9 9 9 9 6 6 6 
+6 9 6 6 9 9 9 6 c c 9 9 6 6 9 6 
+6 9 9 6 6 9 9 c c 9 9 6 6 9 9 6 
+6 9 9 9 6 6 9 9 9 9 6 6 9 9 9 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+`, true)
+    scene.setTile(1, img`
+. . b b b b b b b b b b b b . . 
+. b e 4 4 4 4 4 4 4 4 4 4 e b . 
+b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
+b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
+b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
+b e e 4 4 4 4 4 4 4 4 4 4 e e b 
+b e e e e e e e e e e e e e e b 
+b e e e e e e e e e e e e e e b 
+b b b b b b b d d b b b b b b b 
+c b b b b b b c c b b b b b b c 
+c c c c c c b c c b c c c c c c 
+b e e e e e c b b c e e e e e b 
+b e e e e e e e e e e e e e e b 
+b c e e e e e e e e e e e e c b 
+b b b b b b b b b b b b b b b b 
+. b b . . . . . . . . . . b b . 
+`, true)
+}
+function nextLevel () {
+    scene.setTileMap(Levels[currentLevel])
+    mySprite.x += 16
+}
 let z: Sprite = null
 let k: Sprite = null
 let t: Sprite = null
