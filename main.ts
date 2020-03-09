@@ -225,13 +225,13 @@ b b b b b b b b b b b b b b b b
 . b b . . . . . . . . . . b b . 
 `, true)
     scene.setTile(8, img`
-1 d d 9 9 9 9 1 1 8 9 6 9 d d 1 
-d d 9 9 9 9 9 1 1 8 9 6 6 9 d d 
-d 9 9 9 9 9 9 1 1 8 9 9 6 6 9 d 
-9 9 9 9 9 9 9 1 1 8 8 9 9 6 6 9 
-9 9 9 9 9 9 d 1 1 d 8 8 9 9 6 6 
-9 9 9 9 9 d d 1 1 d d 8 8 9 9 9 
-9 9 9 9 d d 1 1 1 1 d d 8 8 8 8 
+1 d d 9 9 9 9 1 1 8 8 8 8 d d 1 
+d d 9 9 9 9 9 1 1 9 9 9 8 8 d d 
+d 9 9 9 9 9 9 1 1 6 6 9 9 8 8 d 
+9 9 9 9 9 9 9 1 1 9 6 6 9 9 8 8 
+9 9 9 9 9 9 d 1 1 d 9 6 6 9 9 8 
+9 9 9 9 9 d d 1 1 d d 9 6 6 9 8 
+9 9 9 9 d d 1 1 1 1 d d 9 6 9 8 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
 8 9 6 9 d d 1 1 1 1 d d 9 9 9 9 
@@ -243,22 +243,40 @@ d d 8 8 9 9 9 1 1 9 9 9 9 9 d d
 1 d d 8 8 8 8 1 1 9 9 9 9 d d 1 
 `, true)
     scene.setTile(2, img`
-. . . . . . . 1 1 . . . . . . . 
-. . . . . . . 1 1 . . . . . . . 
-. . . . . . . 1 1 . . . . . . . 
-. . . . . . . 1 1 . . . . . . . 
-. . . . . . . 1 1 . . . . . . . 
-. . . . . . . 1 1 . . . . . . . 
-. . . . . . . 1 1 . . . . . . . 
-. . . . . . . 1 1 . . . . . . . 
-. . . . . . . 1 1 . . . . . . . 
-. . . . . . . 1 1 1 . . . . . . 
-. . . . . . . 1 1 1 . . . . . . 
-. . . . . . . 1 1 1 . . . . . . 
-. . . . . . . 1 1 1 . . . . . . 
-. . . . . . . 1 1 1 . . . . . . 
-. . . . . . . 1 1 1 . . . . . . 
-. . . . . . . 1 1 1 . . . . . . 
+1 d d 2 2 2 2 1 1 4 4 2 2 d d 1 
+d d 2 2 2 2 2 1 1 5 4 4 2 2 d d 
+d 2 2 2 2 2 2 1 1 5 5 4 4 2 2 d 
+2 2 2 2 2 2 2 1 1 2 5 5 4 4 2 2 
+2 2 2 2 2 2 d 1 1 d 2 5 5 4 4 2 
+2 2 2 2 2 d d 1 1 d d 2 5 5 4 4 
+2 2 2 2 d d 1 1 1 1 d d 2 5 5 4 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+4 5 5 2 d d 1 1 1 1 d d 2 2 2 2 
+4 4 5 5 2 d d 1 1 d d 2 2 2 2 2 
+2 4 4 5 5 2 d 1 1 d 2 2 2 2 2 2 
+2 2 4 4 5 5 2 1 1 2 2 2 2 2 2 2 
+d 2 2 4 4 5 5 1 1 2 2 2 2 2 2 d 
+d d 2 2 4 4 5 1 1 2 2 2 2 2 d d 
+1 d d 2 2 4 4 1 1 2 2 2 2 d d 1 
+`, true)
+    scene.setTile(10, img`
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+a a f f f f f f f f f f f f a a 
+a a f f f f f f f f f f f f a a 
+a a f f f f f f f f f f f f a a 
+a a f f f f f f f f f f f f a a 
+a a f f f f f f f f f f f f a a 
+a a f f f f f f f f f f f f a a 
+a a f f f f f f f f f f f f a a 
+a a f f f f f f f f f f f f a a 
+a a f f f f f f f f f f f f a a 
+a a f f f f f f f f f f f f a a 
+a a f f f f f f f f f f f f a a 
+a a f f f f f f f f f f f f a a 
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
 `, true)
 }
 function nextLevel () {
@@ -431,6 +449,3 @@ Levels = [img`
 `]
 currentLevel = 0
 nextLevel()
-game.onUpdate(function () {
-	
-})
