@@ -123,46 +123,6 @@ function the_enemy () {
     destroyer.x = Math.randomRange(150, -100)
     destroyer.follow(mySprite, 50)
     kk.follow(mySprite, 50)
-    t = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . 7 . . . . . . . . . . 
-. . . . 7 7 7 . . . . . . . . . 
-. . . . 1 7 1 . . . . . . . . . 
-. . . . 7 7 7 . . . . . . . . . 
-. . . . 2 2 2 . . . . . . . . . 
-. . . . . 7 . . . . . . . . . . 
-. 7 7 7 7 7 7 . . . . . . . . . 
-. . . . 7 7 7 . . . . . . . . . 
-. 7 7 7 7 7 7 . . . . . . . . . 
-. . . . 7 7 7 . . . . . . . . . 
-. . . . 7 . 7 . . . . . . . . . 
-. . . . 7 . 7 . . . . . . . . . 
-. . . . 7 . 7 7 . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Projectile)
-    t.x = Math.randomRange(-1000, -350)
-    t.follow(mySprite, 50)
-    k = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . 8 . . . . . . . . . . 
-. . . . 9 8 9 . . . . . . . . . 
-. . . . 1 8 1 . . . . . . . . . 
-. . . . 9 2 9 . . . . . . . . . 
-. . . . 2 2 2 . . . . . . . . . 
-. . . . . 9 . . . . . . . . . . 
-. 8 8 8 8 9 8 8 8 8 . . . . . . 
-. . . . 8 9 8 . . . . . . . . . 
-. 9 9 9 9 9 9 9 9 9 . . . . . . 
-. . . . 8 8 9 . . . . . . . . . 
-. . . . 8 . 9 . . . . . . . . . 
-. . . . 8 . 9 . . . . . . . . . 
-. . . 8 8 . 9 9 . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Projectile)
-    k.x = Math.randomRange(200, -350)
-    k.follow(mySprite, 70)
     z = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . 8 . . . . . . . . . . 
@@ -181,8 +141,28 @@ function the_enemy () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Projectile)
-    z.y = Math.randomRange(500, 100)
+    z.x = Math.randomRange(200, -350)
     z.follow(mySprite, 70)
+    tttt = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . 8 . . . . . . . . . . 
+. . . . 9 8 9 . . . . . . . . . 
+. . . . 1 8 1 . . . . . . . . . 
+. . . . 9 2 9 . . . . . . . . . 
+. . . . 2 2 2 . . . . . . . . . 
+. . . . . 9 . . . . . . . . . . 
+. 8 8 8 8 9 8 8 8 8 . . . . . . 
+. . . . 8 9 8 . . . . . . . . . 
+. 9 9 9 9 9 9 9 9 9 . . . . . . 
+. . . . 8 8 9 . . . . . . . . . 
+. . . . 8 . 9 . . . . . . . . . 
+. . . . 8 . 9 . . . . . . . . . 
+. . . 8 8 . 9 9 . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Projectile)
+    tttt.y = Math.randomRange(500, 100)
+    tttt.follow(mySprite, 70)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     end_the_game()
@@ -284,9 +264,31 @@ function nextLevel () {
     currentLevel += 1
     mySprite.x += 16
 }
+function changing_the_sprites () {
+    if (currentLevel == 1) {
+        t = img`
+f f f f f 4 4 4 4 4 4 f f f f f 
+1 1 1 1 f f 4 4 4 4 f f 1 1 1 1 
+1 1 1 1 4 f f 4 4 f f 4 1 1 1 1 
+1 1 1 1 4 4 f f f f 4 4 1 1 1 1 
+1 1 1 1 4 4 4 f f 4 4 4 1 1 1 1 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 f f f f f f f f f f f f f f 4 
+f f f f f f f f f f f f f f f f 
+f f f 1 1 1 1 1 1 1 1 1 1 f f f 
+f f f 1 1 1 1 1 1 1 1 1 1 f f f 
+f f f 1 1 1 1 1 1 1 1 1 1 f f f 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+`
+    }
+}
+let t: Image = null
+let tttt: Sprite = null
 let z: Sprite = null
-let k: Sprite = null
-let t: Sprite = null
 let destroyer: Sprite = null
 let kk: Sprite = null
 let myEnemy: Sprite = null
@@ -413,22 +415,78 @@ Levels = [img`
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
 `, img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 8 f f f f f f f f f f f f f f 8 8 8 f f f f f f f f f f 8 8 8 8 8 8 8 8 8 8 f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 8 f f f f f f f f f f f f f 8 8 8 8 f f f f f f f f f f 8 8 8 8 8 8 8 8 8 8 8 f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 f 8 f f f f f f f f f f f f 8 f 8 8 f f f f f f f f f f 8 8 8 8 8 8 8 8 8 8 8 8 f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 f f 8 f f f f f f f f f f 8 f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 f f 8 f f f f f f f f f f 8 f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 f f f 8 f f f f f f f f 8 f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 f f f f 8 f f f f f f f 8 f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 f f f f 8 f f f f f f 8 f f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 f f f f f 8 f f f f f 8 f f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 f f f f f f 8 f f f 8 f f f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 f f f f f f 8 f f f 8 f f f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 f f f f f f f 8 f 8 f f f f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 f f f f f f f f 8 8 f f f f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
 `, img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -449,3 +507,4 @@ Levels = [img`
 `]
 currentLevel = 0
 nextLevel()
+changing_the_sprites()
