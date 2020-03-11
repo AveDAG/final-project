@@ -39,9 +39,6 @@ function the_Player () {
     controller.moveSprite(mySprite)
     scene.cameraFollowSprite(mySprite)
 }
-function end_the_game () {
-    game.over(false)
-}
 function the_enemy () {
     ak = sprites.create(img`
 . . . . . . . . . . . . . . . . 
@@ -165,7 +162,7 @@ function the_enemy () {
     tttt.follow(mySprite, 70)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
-    end_the_game()
+    info.changeLifeBy(-1)
 })
 function map () {
     scene.setTile(14, img`
@@ -286,6 +283,9 @@ f f f 1 1 1 1 1 1 1 1 1 1 f f f
 `
     }
 }
+info.onLifeZero(function () {
+    game.over(false)
+})
 let t: Image = null
 let tttt: Sprite = null
 let z: Sprite = null
@@ -296,6 +296,9 @@ let ak: Sprite = null
 let mySprite: Sprite = null
 let currentLevel = 0
 let Levels: Image[] = []
+game.splash("Welcome to the hardest game of life!!!!")
+game.splash("Are you Ready???")
+info.setLife(3)
 map()
 the_Player()
 scene.setBackgroundColor(9)
@@ -419,74 +422,74 @@ f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 8 8 f f f f f f f f f f f f f f 8 8 8 f f f f f f f f f f 8 8 8 8 8 8 8 8 8 8 f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 8 8 f f f f f f f f f f f f f 8 8 8 8 f f f f f f f f f f 8 8 8 8 8 8 8 8 8 8 8 f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 8 f 8 f f f f f f f f f f f f 8 f 8 8 f f f f f f f f f f 8 8 8 8 8 8 8 8 8 8 8 8 f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 f f f 
+f f f f f f f f 8 f f f f f f f f f 8 8 8 8 f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 f f f f f f 8 f f f 
+f f f f f f f 8 f f f f f f f f 8 8 f f f f f f f f f f f f f f f f 8 f f f f f f f f f f f 8 8 f f f f f f f f f f f f f 8 f f f f f f 8 f f f 
+f f f f f f f 8 f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f 8 f f f f f f f f f f f f 8 f f f f f f f f f f f f 8 f f f f f f f 8 f f 
+f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 f f f f f f f f f f 8 f f f f f f f f 8 f f 
+f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 8 8 f f f f f f f 8 f f f f f f f f 8 f f 
+f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 8 f f f f 8 f f f f f f f f 8 f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 8 f f f f f f f f f f f f f f 8 8 8 f f f f f f f f f f 8 8 8 8 8 8 8 8 8 8 f f f f f f f 8 f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 8 f f f f f f f f f f f f f 8 8 8 8 f f f f f f f f f f 8 8 8 8 8 8 8 8 8 8 8 f f f f f f 8 f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 f 8 f f f f f f f f f f f f 8 f 8 8 f f f f f f f f f f 8 8 8 8 8 8 8 8 8 8 8 8 f f f f f f f f f 8 8 8 f f f f f f f 
 f f f f f f f f f f f 8 8 f f 8 f f f f f f f f f f 8 f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f 8 8 f f 8 f f f f f f f f f f 8 f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f 8 8 f f f 8 f f f f f f f f 8 f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f 8 8 f f f f 8 f f f f f f f 8 f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 8 f f f f 8 f f f f f f 8 f f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 8 f f f f f 8 f f f f f 8 f f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 f f f f 8 f f f f f f 8 f f f f 8 8 f f f f f f f f f f 8 8 f f f 8 8 8 8 8 8 8 8 8 8 f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 f f f f f 8 f f f f f 8 f f f f 8 8 f f f f f f f f f f 8 8 f f f f 8 8 f f f f f f f 8 8 f f f f f f f f f f f f f f 
 f f f f f f f f f f f 8 8 f f f f f f 8 f f f 8 f f f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f 8 8 f f f f f f 8 f f f 8 f f f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 8 f f f f f f f 8 f 8 f f f f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 8 f f f f f f f f 8 8 f f f f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 f f f f f f f 8 f 8 f f f f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f 8 f f f f f 
+f f f f f f f f f f f 8 8 f f f f f f f f 8 8 f f f f f f 8 8 f f f f f f f f f f 8 8 f f 8 f f f f f f f f f f f f f f f f f f f 8 f 8 f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 8 f f f f f f f 8 8 8 f f f f f f 8 f 8 f f f f 
+f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f 8 8 f f f f f f f f 8 8 f f 8 f f f 
+f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 f f f 
+f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 8 f f f f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f 8 f f f 
+f f f 8 f f f f f f f f f f f f f f f f f f 8 8 8 f f f f f f f f 8 8 f f f f f f f f f 8 8 8 8 8 f f f f f f f f f f f f f f f f f f f f 8 f f 
+f f f 8 f f f f f f f f f f f f f f 8 8 8 8 f f f f f f f f f f f f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f 8 8 8 8 f f f 8 f f 
+f f 8 f f f f f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f 8 f f f f f f f f 8 f f f f f f f f f f f f 8 f f 8 f f 
+f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 8 f f f f 8 8 f f f f f f f f f f f f f 8 f f 8 f f 
+f f 8 f f f f f f 8 8 8 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 8 8 8 f f f f f f f f f f f f f f f 8 f f f f f 
+f f f f f f f f f 8 8 8 f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 8 f f f f f 
+f f f f f f f f f 8 8 8 f f f 8 8 8 f f f f f f 8 8 8 8 8 8 8 8 8 8 8 8 8 f f f f f f 8 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f 8 8 8 f f f f f 8 f f f f f f 8 8 8 8 8 8 8 8 8 8 8 8 8 f f f f 8 8 8 f f f f f f f f f f 8 8 8 f f f f f f f f f f f f f f f 
+f f f f f f f f f 8 8 8 f f f f f 8 8 f f f f f 8 8 8 8 f f f f f f 8 8 8 f f f f 8 8 f f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f 8 8 8 f f f f f f 8 8 f f f f 8 8 8 f f f f f f f f 8 8 f f f f 8 8 f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f 8 8 8 f f f 8 8 8 8 8 f f f f 8 8 8 f f f f f f f f 8 8 f f f f 8 f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f 8 8 8 f f f 8 8 8 8 f f f f f 8 8 8 f f f f f f f f 8 8 f f f f 8 8 f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f 
+f f f f 8 8 f f f 8 8 8 f f f 8 8 8 f f f f f f 8 8 8 f f f f f f f f 8 8 f f f f 8 8 f f f f f f f f 8 f f f f f f f f f f f f f 8 f f f f f f 
+f f f 8 8 f f f f 8 8 8 f f f 8 8 8 f f f f f f 8 8 8 f f f f f f f f 8 8 f f f f f 8 8 f f f f f f f f 8 f f f f f f f f f f f f 8 f f f f f f 
+f f f f f f f f f 8 8 8 f f f 8 8 8 f f f f f f 8 8 8 f f f f f f f f 8 8 f f f f f 8 8 f f f f f f f f 8 f f f f f f f f f f f f 8 f f f f f f 
+f f f f f f f f f 8 8 8 f f f 8 8 8 f f f f f f 8 8 8 f f f f f f f f 8 8 f f f f f 8 8 8 8 8 f f f f f f 8 8 8 8 f f f f f f f f f 8 f f f f f 
+f f f f f f f f f 8 8 8 f f f 8 8 8 8 f f f f f 8 8 8 f f f f f f f f 8 8 f f f f f f f f f 8 f f f f f f f f f 8 8 f f f f f f 8 8 f 8 f f f f 
+f f f f f f f f f 8 8 8 f f f f 8 8 8 8 f f f f 8 8 8 f f f f f f f f 8 8 f f f f f f f f f 8 8 f f f f f f f f f 8 f f f f 8 8 f f f f 8 8 8 f 
+f f f f f f f f f 8 8 8 f f f f 8 8 8 8 f f f f 8 8 8 f f f f f f f f 8 8 f f f f f f f f f f 8 f f f f f f f f f 8 f f f f f f f f f f f f f f 
+f f f 8 8 f f f f 8 8 8 f f f 8 8 8 8 8 f f f f 8 8 8 8 f f f f f f 8 8 8 f f f f f 8 8 8 8 8 f f f f f f f f f 8 8 f f f f f f f f f f f f f f 
+f f f f 8 f f f f 8 8 8 f f 8 8 8 8 8 f f f f f 8 8 8 8 8 8 8 8 8 8 8 8 8 f f f f 8 8 8 8 8 f f f f f f 8 8 8 8 8 f f f f f f f f f f f f f f f 
+f f f f f 8 f f f 8 8 8 8 8 8 8 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f 8 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 f f f f 8 8 8 8 8 f f 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 f f f f f f f f f f 8 8 8 8 8 8 8 
+8 8 8 8 8 8 8 8 8 8 8 f f f f f f f f f f f f f f f f 8 8 8 8 8 8 f f f f f f f f f f f f f f f f f f f f f 8 8 8 8 8 8 8 8 8 8 8 f f f f f f f 
+f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 8 f f 8 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
+8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 f f 8 f f f f f f f f f f f f f f f 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 
+8 8 8 8 8 8 8 8 f 8 8 8 8 8 8 8 f f f f f f f f f f f 8 f f f f f 8 8 8 8 f f 8 f f f f f f 8 8 8 8 8 8 8 8 8 8 f f f f f f f f 8 f f f f f f f 
+8 8 8 8 f f f f 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 f 8 8 f f 8 8 8 8 8 8 8 f f f 8 f f f f f 8 f f f f f f f f 8 f f f f f f f 
+f f f f 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 f f f f f f 8 f f f f f f f 8 f f f f f 8 f f f f f f f f 8 f f f f f f f 
+f f f f f f f f 8 f f f f f f f f f 8 f f f f f f f f f 8 f f f f f f f f f f f f 8 f f f f f f f 8 f f f f f 8 f f f 8 8 f f f 8 f f f f f f f 
+f f f f f f f f 8 f f f f f f f f f 8 f f f f f f f f f 8 f f f f f f f f f f f 8 8 f f f f f f f 8 f f 8 f f 8 f f f f 8 f f f 8 8 f f f f f f 
+f f f 8 f f f f 8 f f f f f f f 8 f 8 f f f f f f f f f 8 f f f f f f f f f f f 8 f f f f f f f f 8 f f 8 f f 8 f f f f 8 f f f f 8 f f f f f f 
+f f f 8 f f f f 8 f f f f f 8 8 f f 8 f f f f f f f f f 8 8 f f f f f f f f f f 8 8 f f f f f f f 8 f f 8 f f 8 8 f f f 8 f f f f 8 8 8 f f f f 
+f f f 8 f f f f 8 f f f f f 8 f f f 8 f f f f f f f f f f 8 f f f f f f f f f f f 8 8 f f f f f f 8 f f 8 f f f 8 f f f 8 f f f f f f 8 f f f f 
+f f f 8 f f f f 8 f f f f f 8 f f f 8 f f f f 8 f f f f f f f f f f f f f f f f f f 8 f f f 8 f f 8 f f 8 f f f 8 f f f 8 f f f f f f 8 f f f f 
+f f f 8 f f f 8 8 f f f f f 8 f f f f f f f f 8 f f f f f f f f f f f f f f f f f f 8 f f f 8 f f 8 f f 8 f f f 8 f f f 8 8 f f f f f f f f f f 
+f f f 8 f f f f 8 f f f f f 8 f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f 8 8 8 f f f f f 8 f f f f f f f f 8 f f f f f f f f f f 
+f f f 8 f f f f 8 f f f f f 8 8 f f f f f f f f 8 f f f f f f f f f f f f f f f f f f f 8 f f f f f f f 8 8 f f f f f f f 8 f f f f f f f f f f 
+f f f 8 f f f f f f f f f f f 8 f f f f f f f f 8 8 f f f f f f f f f f f f f f f f f f 8 f f f f f f f f 8 f f f f f f f 8 f f f f f f f f f f 
+f f f 8 8 f f f f f f f f f f 8 f f f f f f f f f 8 f f f f f f f f f f f f f f f f f f 8 f f f f f f f f 8 f f f f f f f 8 f f f f f f f f f e 
 `, img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
